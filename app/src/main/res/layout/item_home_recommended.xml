@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="10dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginBottom="14dp"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_car"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginVertical="6dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/car_blue"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_model_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="20dp"
+            tools:text="Modelo: Onix Plus"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/image_car"
+            app:layout_constraintStart_toEndOf="@id/image_car"
+            app:layout_constraintBottom_toTopOf="@id/tv_age_car"
+            android:textSize="16sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_age_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="20dp"
+            tools:text="Ano: 2024"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tv_model_car"
+            app:layout_constraintStart_toEndOf="@id/image_car"
+            app:layout_constraintBottom_toBottomOf="@id/image_car"
+            android:textSize="14sp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginEnd="20dp"
+            tools:text="R$ 50.000,00"
+            android:background="@drawable/shape_bg_tv_50"
+            android:paddingHorizontal="8dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/tv_model_car"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/image_car"
+            android:textSize="14sp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

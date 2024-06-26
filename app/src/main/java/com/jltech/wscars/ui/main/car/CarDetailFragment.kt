@@ -1,34 +1,36 @@
-package com.jltech.wscars.ui.account.login
+package com.jltech.wscars.ui.main.car
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.jltech.wscars.databinding.FragmentLoginBinding
-import com.jltech.wscars.databinding.FragmentStepOnboardingBinding
-import com.jltech.wscars.ui.main.MainActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.jltech.wscars.api.model.response.cars.Car
+import com.jltech.wscars.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class LoginFragment : Fragment() {
+class CarDetailFragment : Fragment() {
 
 
-    private var _binding: FragmentLoginBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-   // private val viewModel by viewModel<AdvertisementViewModel>()
+     private val viewModel: CarsViewModel by viewModel()
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUI()
         setupObserver()
         onClick()
 
@@ -45,18 +47,16 @@ class LoginFragment : Fragment() {
     private fun onClick() {
 
         binding.apply {
-            btnContinue.setOnClickListener {
-                startActivity(Intent(requireActivity(), MainActivity::class.java))
-                requireActivity().finish()
-            }
+
         }
 
     }
 
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 
