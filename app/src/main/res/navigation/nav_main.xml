@@ -9,5 +9,25 @@
         android:id="@+id/navigation_home"
         android:name="com.jltech.wscars.ui.main.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_carDetailsFragment"
+            app:destination="@id/carDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carDetailsFragment"
+        android:name="com.jltech.wscars.ui.main.car.CarDetailsFragment"
+        android:label="fragment_car_details"
+        tools:layout="@layout/fragment_car_details" >
+        <argument
+            android:name="carDetail"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_solicitaion"
+        android:name="com.jltech.wscars.ui.main.solicitation.SolicitationFragment"
+        android:label="fragment_solicitation"
+        tools:layout="@layout/fragment_solicitation" />
+
+
 </navigation>

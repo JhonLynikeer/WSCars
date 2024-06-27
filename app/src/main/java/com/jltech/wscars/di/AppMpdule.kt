@@ -1,9 +1,13 @@
 package com.jltech.wscars.di
 
 
+import DatabaseHelper
 import com.jltech.wscars.api.service.WSCarsService
+import com.jltech.wscars.repository.OrderRepository
 import com.jltech.wscars.repository.WSCarsRepository
+import com.jltech.wscars.ui.main.car.CarsViewModel
 import com.jltech.wscars.ui.main.home.HomeViewModel
+import com.jltech.wscars.ui.main.solicitation.SolicitationViewModel
 import com.jltech.wscars.utils.Constants
 import com.jltech.wscars.utils.Preferences
 import kotlinx.coroutines.CoroutineDispatcher
@@ -66,15 +70,14 @@ val databaseModule = module {
     single {
         Preferences(androidContext())
     }
+    single {
+        DatabaseHelper(androidContext())
+    }
 }
 val serviceModule = module {
     single {
         get<Retrofit>(qualifier = named("Retrofit")).create(WSCarsService::class.java)
     }
-
-//    single {
-//        get<Retrofit>(qualifier = named("viaCepRetrofit")).create(ViaCepService::class.java)
-//    }
 
 }
 val repositoryModule = module {
@@ -84,11 +87,20 @@ val repositoryModule = module {
     single {
         WSCarsRepository(get())
     }
+    single {
+        OrderRepository(get(), get())
+    }
 
 }
 val viewModelModule = module {
     viewModel {
         HomeViewModel(get())
+    }
+    viewModel {
+        CarsViewModel(get())
+    }
+    viewModel {
+        SolicitationViewModel(get())
     }
 
 }

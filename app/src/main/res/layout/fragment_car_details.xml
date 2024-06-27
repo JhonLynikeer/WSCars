@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.car.CarDetailsFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/text_title_car_details"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@null"
+        android:backgroundTint="@color/black"
+        android:padding="8dp"
+        android:src="@drawable/ic_backward_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/text_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_title" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+        app:layout_constraintEnd_toEndOf="@+id/view_pager"
+        app:layout_constraintStart_toStartOf="@+id/view_pager"
+        app:tabGravity="center"
+        app:tabBackground="@drawable/tab_pager_selector_around"
+        app:tabIndicator="@drawable/tab_pager_selector_around"
+        app:tabIndicatorColor="@android:color/transparent"
+        app:tabMode="fixed"
+        app:tabIndicatorGravity="center"
+        app:tabRippleColor="@android:color/transparent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/roboto_bold"
+        tools:text="@string/text_title_car_name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintTop_toBottomOf="@id/view_pager"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        tools:text="Ano: 2021"
+        android:drawableStart="@drawable/ic_agenda"
+        android:drawablePadding="12dp"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_name"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title_door"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        tools:text="Portas: 4"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_car_door"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_title_age"
+        app:layout_constraintTop_toTopOf="@id/tv_title_age"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_color_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        tools:text="Cor: Azul"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_paint_bucket"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_door"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_fuel_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/poppins_bold"
+        tools:text="Combustível: Gasolina"
+        android:drawablePadding="12dp"
+        android:drawableStart="@drawable/ic_fuel"
+        android:textColor="@color/gray"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_color_car"
+        app:layout_constraintTop_toTopOf="@id/tv_color_car"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_price_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        tools:text="R$ 50.000,00"
+        android:background="@drawable/shape_bg_tv_50_blue"
+        android:paddingHorizontal="20dp"
+        android:drawablePadding="12dp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_color_car"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_contact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/bg_button_radius_12"
+        android:backgroundTint="#8BC34A"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/btn_contact"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

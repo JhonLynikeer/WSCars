@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.jltech.wscars.api.model.response.cars.Car
 import com.jltech.wscars.api.model.response.categories.CategoriesResponse
 import com.jltech.wscars.databinding.FragmentHomeBinding
@@ -66,7 +68,8 @@ class HomeFragment : Fragment() {
         binding.rvRecommended.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             homeCarsAdapter = HomeCarsAdapter(emptyList()) { car ->
-                //    findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToSearchStoresFragment(categoryId = category.id))
+                val carJson = Gson().toJson(car)
+                findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToCarDetailsFragment(carDetail = carJson))
             }
 
             adapter = homeCarsAdapter
