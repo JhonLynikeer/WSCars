@@ -13,6 +13,7 @@ import com.jltech.wscars.utils.Preferences
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -25,32 +26,37 @@ import java.util.concurrent.TimeUnit
 private const val CONNECTION_TIMEOUT = 30 * 1000
 
 val netWorkModule = module {
-    single<OkHttpClient> {
-        OkHttpClient.Builder().addInterceptor { chain ->
-            val newRequest = chain.request().newBuilder()
-                .header("accept", "application/json")
-                .header(
-                    "Authorization",
-                    "Bearer ${
-                        get<Preferences>(Preferences::class).getToken()
-                    }"
-                )
-                .build()
-            chain.proceed(newRequest)
-        }.connectTimeout(
-            CONNECTION_TIMEOUT.toLong(),
-            TimeUnit.MINUTES
-        ).readTimeout(1, TimeUnit.MINUTES).build()
+    single {
+        val logging = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+
+        OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                val newRequest = chain.request().newBuilder()
+                    .header("accept", "application/json")
+                    .header(
+                        "Authorization",
+                        "Bearer ${get<Preferences>().getToken()}"
+                    )
+                    .build()
+                chain.proceed(newRequest)
+            }
+            .addInterceptor(logging)
+            .connectTimeout(CONNECTION_TIMEOUT.toLong(), TimeUnit.MINUTES)
+            .readTimeout(1, TimeUnit.MINUTES)
+            .followRedirects(true)
+            .followSslRedirects(true)
+            .build()
     }
-    single<Retrofit>(qualifier = named("Retrofit")) {
+
+    single(named("Retrofit")) {
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .client(get())
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
-
-
 }
 
 val viaCepApi = module {
