@@ -2,6 +2,7 @@ package com.jltech.wscars.di
 
 
 import DatabaseHelper
+import android.util.Log
 import com.jltech.wscars.api.service.WSCarsService
 import com.jltech.wscars.repository.OrderRepository
 import com.jltech.wscars.repository.WSCarsRepository
@@ -33,13 +34,11 @@ val netWorkModule = module {
 
         OkHttpClient.Builder()
             .addInterceptor { chain ->
-                val newRequest = chain.request().newBuilder()
+                val request = chain.request()
+                val newRequest = request.newBuilder()
                     .header("accept", "application/json")
-                    .header(
-                        "Authorization",
-                        "Bearer ${get<Preferences>().getToken()}"
-                    )
                     .build()
+
                 chain.proceed(newRequest)
             }
             .addInterceptor(logging)

@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private val scheduler = Executors.newScheduledThreadPool(1)
-    private val interval: Long = 20 // 60 segundos
+    private val interval: Long = 60 // 60 segundos
 
     private lateinit var binding: ActivityMainBinding
 
@@ -68,6 +68,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
+        scheduler.shutdown()
     }
 }

@@ -19,7 +19,6 @@ class ImageViewPagerAdapter (private val imageList: List<Int>, private val onCli
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
 
         init {
-            // colocar click do botão e variavel provavel
             imageView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
